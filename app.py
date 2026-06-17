@@ -8,11 +8,17 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-try:
-    client = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
-except Exception:
-    st.error("API key not found. Add ANTHROPIC_API_KEY to .streamlit/secrets.toml")
+required_keys = ["ANTHROPIC_API_KEY"]
+missing = [k for k in required_keys if k not in st.secrets]
+if missing:
+    st.error(
+        f"Missing secret(s): {', '.join(missing)}. "
+        "Add them in Streamlit Cloud → Settings → Secrets "
+        "(or .streamlit/secrets.toml when running locally)."
+    )
     st.stop()
+
+client = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
 # ── Persona-aware prompt instructions ──────────────────────────────────────
 PERSONA_CONTEXT = {
