@@ -16,6 +16,19 @@ acceptance criteria, and a Definition of Done — in under 15 seconds.
 - Optionally includes edge case test scenarios
 - Outputs a downloadable .txt file
 
+## How It Works
+
+```mermaid
+flowchart TD
+    A["Enter a plain-English<br/>business problem"] --> B["Select a persona<br/>(End User, Analyst, Admin...)"]
+    B --> C["Claude (Anthropic)"]
+    C --> D["2-6 user stories"]
+    D --> E["Given / When / Then<br/>acceptance criteria"]
+    D --> F["Optional edge-case<br/>test scenarios"]
+    E --> G["Definition of Done"]
+    F --> G
+    G --> H["Download as .txt"]
+```
 ## Product Decisions I Made (Why This Is a PO Project)
 | Decision | What I chose | Why |
 |----------|-------------|-----|
